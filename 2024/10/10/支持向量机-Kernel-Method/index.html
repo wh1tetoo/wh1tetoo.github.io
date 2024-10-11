@@ -4,7 +4,7 @@
 <html lang="zh">
 <head>
     <meta charset="utf-8" />
-    <title>初步探究绘画大模型 | 振振姚 の 小窝</title>
+    <title>支持向量机 &amp; Kernel Method | 振振姚 の 小窝</title>
     <meta name="author" content="Zhen Yao" />
     <meta name="description" content="两耳不闻窗外事 一心只读圣贤书" />
     <meta name="keywords" content="" />
@@ -170,14 +170,14 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>初步探究绘画大模型</h1>
+        <h1>支持向量机 &amp; Kernel Method</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2024/9/25
+            2024/10/10
         </span>
         
         <span class="category">
@@ -198,8 +198,8 @@
             
             <span class="tag">
                 
-                <a href="/tags/LLM/" style="color: #ffa2c4">
-                    LLM
+                <a href="/tags/machinelearning/" style="color: #00bcd4">
+                    machinelearning
                 </a>
             </span>
             
@@ -209,66 +209,17 @@
     
     <div class="content" v-pre>
         <blockquote>
-<p>LLM 真的太多了！！！作为学生经常接触到的文本生成的大模型我们已经熟悉，例如：GPT， 文心一言， KIMI， 但其实还有很多其他领域的大模型。例如这次接触到的绘画类的。对于每个公司生产的大模型，他们也有很多不同的版本和功能。 例如下面这个表格（从Dify手册拿来的），他们的大模型不光有文本生成，还提供向量化，语音转文字，文字转语音的接口等。</p>
+<p>非线性带来高维转换（从模型角度）<br>$$ x \rightarrow \phi(x)  $$</p>
+<p>对偶带来内积 （从优化角度）<br>$${x_i}^T {x_j}$$</p>
 </blockquote>
 <span id="more"></span>
 
-<table>
-<thead>
-<tr>
-<th>Provider</th>
-<th>LLM</th>
-<th>Text Embedding</th>
-<th>Rerank</th>
-<th>Speech to text</th>
-<th>TTS</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>OpenAI</td>
-<td>✔️(🛠️)(👓)</td>
-<td>✔️</td>
-<td></td>
-<td>✔️</td>
-<td>✔️</td>
-</tr>
-<tr>
-<td>Anthropic</td>
-<td>✔️(🛠️)</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>Azure OpenAI</td>
-<td>✔️(🛠️)(👓)</td>
-<td>✔️</td>
-<td></td>
-<td>✔️</td>
-<td>✔️</td>
-</tr>
-</tbody></table>
-<p>回到这次的重点：<strong>绘画模型</strong>。 他们都是基于机器学习，深度学习等人工智能技术生成的。能够模拟人类的绘画创作过程，自动生成具有艺术美感的图像或画作。</p>
-<h3 id="常见的绘画大模型："><a href="#常见的绘画大模型：" class="headerlink" title="常见的绘画大模型："></a>常见的绘画大模型：</h3><ul>
-<li>DALL-E：基于transformer的大语言生成模型，根据文本生成图像。</li>
-<li>Midjourney：另一个基于文本生成图像的AI模型，它专注于为创作者提供快速、高质量的图像生成服务</li>
-<li>DeepArt：基于深度学习的艺术风格转换模型，将普通照片或图像转换成特定艺术风格的作品，实现风格的迁移和创作。</li>
-<li>GANs：由生成器和判别器组成的深度学习模型，通过不断的对抗训练，生成器能够学习到真实艺术作品的分布特征，并生成与之相似的作品，判别器则负责判断生成的作品是否真实，从而指导生成器的训练方向。</li>
-<li>syleGAN：GANs的一种变体，它引入了风格迁移，可以生成具有不同艺术风格的作品。</li>
-</ul>
-<h3 id="常见的绘画大模型的二次创作平台："><a href="#常见的绘画大模型的二次创作平台：" class="headerlink" title="常见的绘画大模型的二次创作平台："></a>常见的绘画大模型的二次创作平台：</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://www.liblib.art/">liblib</a>：中国领先的AI创作平台</li>
-<li><a target="_blank" rel="noopener" href="https://www.shakker.ai/">Shakker</a>：国外仿liblib</li>
-</ul>
-<h3 id="补一个：LLM-应用开发平台："><a href="#补一个：LLM-应用开发平台：" class="headerlink" title="补一个：LLM 应用开发平台："></a>补一个：LLM 应用开发平台：</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/langgenius/dify">Dify</a> :</li>
-<li><a target="_blank" rel="noopener" href="https://github.com/langchain-ai/langchain">Longchain</a> :</li>
-</ul>
-<h3 id="大型语言模型如的微调技术"><a href="#大型语言模型如的微调技术" class="headerlink" title="大型语言模型如的微调技术"></a>大型语言模型如的微调技术</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2106.09685">LoRA</a> :</li>
-</ul>
-
+<blockquote>
+<p>cover theroem: 高维比低维 更易线性可分</p>
+</blockquote>
+<h3 id="Kernel-Function"><a href="#Kernel-Function" class="headerlink" title="Kernel Function"></a>Kernel Function</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>$$ \kappa(x,x’) &#x3D; \phi(x)^T \phi(x’) &#x3D; &lt;\phi(x),\phi(x’)&gt; $$</p>
+<p>对任意的 $x, x’ \in X$, 存在 $\phi: x \rightarrow z$, 满足：<br>$$ \kappa(x,x’) &#x3D; \phi(x)^T \phi(x’) $$<br>则 $ \kappa(x,x’) $ 是一个核函数。</p>
+<h4 id="核函数种类"><a href="#核函数种类" class="headerlink" title="核函数种类"></a>核函数种类</h4>
     </div>
     
     
