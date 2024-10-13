@@ -219,7 +219,71 @@
 </blockquote>
 <h3 id="Kernel-Function"><a href="#Kernel-Function" class="headerlink" title="Kernel Function"></a>Kernel Function</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>$$ \kappa(x,x’) &#x3D; \phi(x)^T \phi(x’) &#x3D; &lt;\phi(x),\phi(x’)&gt; $$</p>
 <p>对任意的 $x, x’ \in X$, 存在 $\phi: x \rightarrow z$, 满足：<br>$$ \kappa(x,x’) &#x3D; \phi(x)^T \phi(x’) $$<br>则 $ \kappa(x,x’) $ 是一个核函数。</p>
-<h4 id="核函数种类"><a href="#核函数种类" class="headerlink" title="核函数种类"></a>核函数种类</h4>
+<h4 id="核函数种类"><a href="#核函数种类" class="headerlink" title="核函数种类"></a>核函数种类</h4><h3 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h3><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><ul>
+<li>训练数据 $x_i$ 及标签 $y_i$   (+1,-1)</li>
+<li>线性模型：向量 ω， 常数b 使得 $ω^T x + b &#x3D; 0$. 其他：直线，平面，超平面（hyperspace）</li>
+<li>一个训练集linear separable. definition</li>
+</ul>
+<h3 id="SVM-（support-vector-machine"><a href="#SVM-（support-vector-machine" class="headerlink" title="SVM （support vector machine)"></a>SVM （support vector machine)</h3><ul>
+<li><p>优化问题：  </p>
+<ul>
+<li>最小化minimize $1&#x2F;2 ||ω||^2$</li>
+<li>限制subject to $y_i(ω^T x + b) ≥ 1$</li>
+</ul>
+</li>
+<li><p>二次规划问题：（要么无解，要么只有一个极值）  </p>
+<ul>
+<li>目标函数 objective function 二次项  </li>
+<li>限制条件一次项</li>
+</ul>
+</li>
+</ul>
+<h3 id="SVM处理非线性"><a href="#SVM处理非线性" class="headerlink" title="SVM处理非线性"></a>SVM处理非线性</h3><h4 id="第一种方式"><a href="#第一种方式" class="headerlink" title="第一种方式"></a>第一种方式</h4><ul>
+<li>最小化： $1&#x2F;2 ||ω||^2 + C \sum \xi_i$  ，不让$\xi_i$太大</li>
+<li>限制条件： <ul>
+<li>$y_i(ω^T x + b) ≥ 1 - \xi_i$</li>
+<li>$\xi_i ≥ 0$</li>
+</ul>
+</li>
+<li>松弛变量  $\xi_i$</li>
+<li>正则项 $C \sum \xi_i$</li>
+<li>事先设定的参数 $C$</li>
+</ul>
+<h4 id="第二种方式"><a href="#第二种方式" class="headerlink" title="第二种方式"></a>第二种方式</h4><ul>
+<li>例子：异或问题</li>
+<li>定义高维映射 $\phi(x)$</li>
+<li>核函数<ul>
+<li>高斯核</li>
+<li>多项式核</li>
+</ul>
+</li>
+<li>泛函分析(Mercer’s throrem)：$K(x_1,x_2)$能被写成 $\phi(x_1)^T \phi(x_2)$的充要条件：<ul>
+<li>(交换性) $K(x_1, x_2) &#x3D; K(x_2, x_1)$</li>
+<li>(半正定性) 任意$c_i, x_i$ 有$\sum \sum c_i c_j K(x_i, x_j) &gt;&#x3D; 0$</li>
+</ul>
+</li>
+</ul>
+<h3 id="优化理论"><a href="#优化理论" class="headerlink" title="优化理论"></a>优化理论</h3><ul>
+<li>教材<ul>
+<li>&lt;convex optimization&gt;. Stephen boyol</li>
+<li>&lt;Nonlinear Programming&gt;</li>
+</ul>
+</li>
+<li>Prime Problem 原问题<ul>
+<li>最小化 $f(\omega)$</li>
+<li>限制条件 $g_i(\omega) &lt;&#x3D; 0$,  $h_i(\omega)&#x3D; 0$</li>
+</ul>
+</li>
+<li>Dual Problem 对偶问题<ul>
+<li>利用拉格朗日乘数法</li>
+</ul>
+</li>
+<li>定理：如果$\omega ^*$是原问题的解，而$\alpha ^*, \beta^*$是对偶问题的解，则有$f(\omega^*)&gt;&#x3D;\Theta(\alpha^*, \beta^*)$</li>
+<li>定义：原问题与对偶问题的间距（Duality Gap）$G &#x3D; f - \Theta$, 某些问题$G&#x3D;0$</li>
+<li>强对偶定理</li>
+<li>KKT条件</li>
+</ul>
+
     </div>
     
     
