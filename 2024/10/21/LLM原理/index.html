@@ -4,7 +4,7 @@
 <html lang="zh">
 <head>
     <meta charset="utf-8" />
-    <title>支持向量机 &amp; Kernel Method | 振振姚 の 小窝</title>
+    <title>LLM原理 | 振振姚 の 小窝</title>
     <meta name="author" content="Zhen Yao" />
     <meta name="description" content="两耳不闻窗外事 一心只读圣贤书" />
     <meta name="keywords" content="" />
@@ -170,14 +170,14 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>支持向量机 &amp; Kernel Method</h1>
+        <h1>LLM原理</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2024/10/10
+            2024/10/21
         </span>
         
         <span class="category">
@@ -198,8 +198,8 @@
             
             <span class="tag">
                 
-                <a href="/tags/machinelearning/" style="color: #00a596">
-                    machinelearning
+                <a href="/tags/LLM/" style="color: #ffa2c4">
+                    LLM
                 </a>
             </span>
             
@@ -209,79 +209,48 @@
     
     <div class="content" v-pre>
         <blockquote>
-<p>非线性带来高维转换（从模型角度）<br>$$ x \rightarrow \phi(x)  $$</p>
-<p>对偶带来内积 （从优化角度）<br>$${x_i}^T {x_j}$$</p>
+<p>买了极客时间的课，就得去看呀！今天的学习内容是LLM原理，粗浅的过一下知识点吧。</p>
 </blockquote>
 <span id="more"></span>
 
-<blockquote>
-<p>cover theroem: 高维比低维 更易线性可分</p>
-</blockquote>
-<h3 id="Kernel-Function"><a href="#Kernel-Function" class="headerlink" title="Kernel Function"></a>Kernel Function</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>$$ \kappa(x,x’) &#x3D; \phi(x)^T \phi(x’) &#x3D; &lt;\phi(x),\phi(x’)&gt; $$</p>
-<p>对任意的 $x, x’ \in X$, 存在 $\phi: x \rightarrow z$, 满足：<br>$$ \kappa(x,x’) &#x3D; \phi(x)^T \phi(x’) $$<br>则 $ \kappa(x,x’) $ 是一个核函数。</p>
-<h4 id="核函数种类"><a href="#核函数种类" class="headerlink" title="核函数种类"></a>核函数种类</h4><h3 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h3><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><ul>
-<li>训练数据 $x_i$ 及标签 $y_i$   (+1,-1)</li>
-<li>线性模型：向量 ω， 常数b 使得 $ω^T x + b &#x3D; 0$. 其他：直线，平面，超平面（hyperspace）</li>
-<li>一个训练集linear separable. definition</li>
-</ul>
-<h3 id="SVM-（support-vector-machine"><a href="#SVM-（support-vector-machine" class="headerlink" title="SVM （support vector machine)"></a>SVM （support vector machine)</h3><ul>
-<li><p>优化问题：  </p>
-<ul>
-<li>最小化minimize $1&#x2F;2 ||ω||^2$</li>
-<li>限制subject to $y_i(ω^T x + b) ≥ 1$</li>
+<h2 id="大模型原理"><a href="#大模型原理" class="headerlink" title="大模型原理"></a>大模型原理</h2><h4 id="Bert"><a href="#Bert" class="headerlink" title="Bert"></a>Bert</h4><ul>
+<li>2018年， google推出了Bert模型，NLP领域步入了LLM时代</li>
+<li>Bert 采用完形填空的方式预训练模型</li>
+<li>采用自我监督的形式，也作为输入也作为输出</li>
+<li>采用超大规模数据集（维基百科）和超大模型</li>
+<li>使用深度双向的transformer<ul>
+<li>Transformer - Bert的基石<ul>
+<li>一种新的encoder-decoder的架构，只使用attention机制</li>
+<li>多头处理机制，采用GPU并行处理，需要</li>
 </ul>
 </li>
-<li><p>二次规划问题：（要么无解，要么只有一个极值）  </p>
-<ul>
-<li>目标函数 objective function 二次项  </li>
-<li>限制条件一次项</li>
+<li>attention机制：让模型可以集中在所有对于当前目标单词重要的输入信息上，预测效果大大提升。</li>
 </ul>
 </li>
+<li>从理解的角度出发，也就是针对于encoder模型，擅长做分类理解任务，所以GPT主要擅长生成领域。</li>
 </ul>
-<h3 id="SVM处理非线性"><a href="#SVM处理非线性" class="headerlink" title="SVM处理非线性"></a>SVM处理非线性</h3><h4 id="第一种方式"><a href="#第一种方式" class="headerlink" title="第一种方式"></a>第一种方式</h4><ul>
-<li>最小化： $1&#x2F;2 ||ω||^2 + C \sum \xi_i$  ，不让$\xi_i$太大</li>
-<li>限制条件： <ul>
-<li>$y_i(ω^T x + b) ≥ 1 - \xi_i$</li>
-<li>$\xi_i ≥ 0$</li>
+<h4 id="ERNIE"><a href="#ERNIE" class="headerlink" title="ERNIE"></a>ERNIE</h4><ul>
+<li>基于phrase的mask策略</li>
+<li>基于entity（人名，地点）的mask策略</li>
+<li>在github中有开源模型</li>
 </ul>
-</li>
-<li>松弛变量  $\xi_i$</li>
-<li>正则项 $C \sum \xi_i$</li>
-<li>事先设定的参数 $C$</li>
+<h4 id="GPT"><a href="#GPT" class="headerlink" title="GPT"></a>GPT</h4><ul>
+<li>早于bert推出，基于transformer编码，获取文本内部的联系</li>
+<li>GPT-2相较于之前添加了多个预训练任务</li>
+<li>甚至把机器翻译，文本摘要，领域问答都放到了预训练任务</li>
+<li>GPT-3模型参数量为1750亿（175B），计算量是bert-base的1000倍</li>
+<li>大力出奇迹，参数量越大，效果越好</li>
 </ul>
-<h4 id="第二种方式"><a href="#第二种方式" class="headerlink" title="第二种方式"></a>第二种方式</h4><ul>
-<li>例子：异或问题</li>
-<li>定义高维映射 $\phi(x)$</li>
-<li>核函数<ul>
-<li>高斯核</li>
-<li>多项式核</li>
-</ul>
-</li>
-<li>泛函分析(Mercer’s throrem)：$K(x_1,x_2)$能被写成 $\phi(x_1)^T \phi(x_2)$的充要条件：<ul>
-<li>(交换性) $K(x_1, x_2) &#x3D; K(x_2, x_1)$</li>
-<li>(半正定性) 任意$c_i, x_i$ 有$\sum \sum c_i c_j K(x_i, x_j) &gt;&#x3D; 0$</li>
+<h4 id="InstructGPT"><a href="#InstructGPT" class="headerlink" title="InstructGPT"></a>InstructGPT</h4><ul>
+<li>步骤一：收集数据，微调监督模型<ul>
+<li>花钱请人做标注，给prompt，</li>
 </ul>
 </li>
-</ul>
-<h3 id="优化理论"><a href="#优化理论" class="headerlink" title="优化理论"></a>优化理论</h3><ul>
-<li>教材<ul>
-<li>&lt;convex optimization&gt;. Stephen boyol</li>
-<li>&lt;Nonlinear Programming&gt;</li>
+<li>步骤二：收集比较数据，训练奖励模型<ul>
+<li>用多个模型给出的答案，通过人工排序</li>
 </ul>
 </li>
-<li>Prime Problem 原问题<ul>
-<li>最小化 $f(\omega)$</li>
-<li>限制条件 $g_i(\omega) &lt;&#x3D; 0$,  $h_i(\omega)&#x3D; 0$</li>
-</ul>
-</li>
-<li>Dual Problem 对偶问题<ul>
-<li>利用拉格朗日乘数法</li>
-</ul>
-</li>
-<li>定理：如果$\omega ^*$是原问题的解，而$\alpha ^*, \beta^*$是对偶问题的解，则有$f(\omega^*)&gt;&#x3D;\Theta(\alpha^*, \beta^*)$</li>
-<li>定义：原问题与对偶问题的间距（Duality Gap）$G &#x3D; f - \Theta$, 某些问题$G&#x3D;0$</li>
-<li>强对偶定理</li>
-<li>KKT条件</li>
+<li>步骤三：收集数据，强化学习优化模型</li>
 </ul>
 
     </div>
