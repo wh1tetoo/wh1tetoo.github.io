@@ -4,7 +4,7 @@
 <html lang="zh">
 <head>
     <meta charset="utf-8" />
-    <title>对数的定义-第一节课 | 振振姚 の 小窝</title>
+    <title>记录一些实用软件 | 振振姚 の 小窝</title>
     <meta name="author" content="Zhen Yao" />
     <meta name="description" content="两耳不闻窗外事 一心只读圣贤书" />
     <meta name="keywords" content="" />
@@ -62,7 +62,7 @@
     <script src="/js/fireworks.js"></script>
 
 
-</head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 <body>
     <div id="layout">
         <transition name="fade">
@@ -170,22 +170,22 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>对数的定义-第一节课</h1>
+        <h1>记录一些实用软件</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2024/9/21
+            2024/10/23
         </span>
         
         <span class="category">
-            <a href="/categories/%E7%88%B1%E4%B8%A2%E5%89%8B%E7%A5%9E/">
+            <a href="/categories/%E7%A8%8B%E5%BA%8F%E7%8C%BF/">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
-                爱丢剋神
+                程序猿
             </a>
         </span>
         
@@ -198,8 +198,8 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E9%AB%98%E4%B8%AD%E7%9F%A5%E8%AF%86/" style="color: #ff7d73">
-                    高中知识
+                <a href="/tags/%E9%81%90%E6%83%B3/" style="color: #ffa2c4">
+                    遐想
                 </a>
             </span>
             
@@ -208,29 +208,9 @@
     </div>
     
     <div class="content" v-pre>
-        <blockquote>
-<p>昨天因为参加双选会，从B站找到了一节试讲的视频。视频中的女老师声情并茂地讲了十分钟的对数定义。无论是板书，肢体语言，还是语音语调，都非常好。我也幻想，什么时候能有她那样的水平。</p>
-</blockquote>
-<span id="more"></span>
-
-<p>十分钟的内容非常紧凑，因此涵盖的内容较少。主要包括：回顾指数知识，引出对数知识，与学生互动，并提醒学生课后复习。</p>
-<p>注意先自我介绍：“各位评委老师好，我是2号考生，今天我试讲的题目是《对数》。”<br>写板书：对数</p>
-<h3 id="回顾指数知识："><a href="#回顾指数知识：" class="headerlink" title="回顾指数知识："></a>回顾指数知识：</h3><p>上节课我们学习了指数运算，并学会如何通过指数计算解决以下问题：<br>$$ y &#x3D; 1.1 ^ x $$<br>也就是说，在实际生活中我们会遇到这样的问题：已知每年的增长率是10%，第x年后，该产品的产量y是多少？<br>那么，如果我们已知产品的产量达到了原来的多少倍，<strong>你能算出它经过了多少年吗？</strong> 我们能列出相应的方程吗？谁来试一下？</p>
-<p>请后排穿黑衣服的男生：<br>$$ 1.11^x &#x3D; 2 \<br>1.11^x &#x3D; 3 \<br>1.11^x &#x3D; 4 $$<br><strong>大家同意吗？这位同学思路转换非常快，请坐下。</strong> 大家看，针对这三个等式，如果我们分别求出它们的解，问题就解决了。那么该如何求解呢？我们已知底数和幂次，要求的是指数x。这就是我们本节课要学习的——对数。</p>
-<h3 id="引入对数定义："><a href="#引入对数定义：" class="headerlink" title="引入对数定义："></a>引入对数定义：</h3><p>写板书：定义：如果<br>$$ a^x &#x3D; N \quad (a&gt;0且a \neq 1) $$<br>那么x叫做以a为底，N的对数，记作：<br>$$ x &#x3D; \underbrace{ \log_a }<em>{\text{底数}} \underbrace{N}</em>{\text{真数}} $$<br>我们要注意这个形式的写法，a写在哪里，N写在哪里。<strong>log表示一种运算，类似于乘法中的✖，除法中的÷。</strong></p>
-<p>现在我们明确了对数的定义。你能将指数式改写成对数式吗？或者说，你能写出x等于多少的形式吗？<br>请第二排的女生说一下。</p>
-<p>写板书：<br>$$<br>x &#x3D; \log_{1.1} 2 \<br>x &#x3D; \log_{1.1} 3 \<br>x &#x3D; \log_{1.1} 4<br>$$</p>
-<p><strong>还有同学能举出其他例子吗？</strong> 请你来说：<br>$$ 2^4 &#x3D; 16 $$<br>转换成对数式就是：<br>$$ 4 &#x3D; \log_2 16 $$</p>
-<p>大家注意，在这个过程中，我们先找到指数，把它放在等号左边，然后是底数，把它放在底数位置，最后是真数。我们可以看到它们是可以相互转化的，也就是说它们是等价的。</p>
-<p>对于一般情况，我们是否也可以这样做呢？<br>$$ 当a &gt; 0且a \neq 1时， a^x &#x3D; N \iff x &#x3D; \log_a N $$<br><strong>然后对应符号相互连线，表示它们之间的关系。</strong> 大家可以讨论一下，在转化过程中有什么需要注意的地方，比如它们的取值？</p>
-<h3 id="提醒学生注意："><a href="#提醒学生注意：" class="headerlink" title="提醒学生注意："></a>提醒学生注意：</h3><p>好，这节课我们了解了对数的定义，注意它的读法和写法，同时注意对数转化为指数的过程。好，下课。</p>
-<p>我的试讲到此结束。</p>
-<hr>
-<ul>
-<li><input checked="" disabled="" type="checkbox"> 插入公式使用 $$ – $$</li>
-<li><input checked="" disabled="" type="checkbox"> 等价符号 \iff</li>
-<li><input checked="" disabled="" type="checkbox"> 下包符号 \underbrace</li>
-<li><input disabled="" type="checkbox"> 自己试讲</li>
+        <h3 id="远程软件"><a href="#远程软件" class="headerlink" title="远程软件"></a>远程软件</h3><ul>
+<li>ToDesk</li>
+<li>Raylink</li>
 </ul>
 
     </div>
