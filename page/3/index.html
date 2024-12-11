@@ -4,7 +4,7 @@
 <html lang="zh">
 <head>
     <meta charset="utf-8" />
-    <title>特征选择与稀疏学习 | 振振姚 の 小窝</title>
+    <title>振振姚 の 小窝</title>
     <meta name="author" content="Zhen Yao" />
     <meta name="description" content="两耳不闻窗外事 一心只读圣贤书" />
     <meta name="keywords" content="" />
@@ -48,12 +48,7 @@
 
 
 
-<script src="https://s4.zstatic.net/ajax/libs/gitalk/1.8.0/gitalk.min.js"></script>
-<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/gitalk/1.8.0/gitalk.min.css" />
-
-
-
-
+<script src="/js/lib/home.js"></script>
 
 <link rel="stylesheet" href="/css/main.css" />
 
@@ -168,92 +163,132 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div class="article">
-    <div>
-        <h1>特征选择与稀疏学习</h1>
+            <div id="home-head">
+    <div
+        id="home-background"
+        ref="homeBackground"
+        data-images="/images/back.jpeg,/images/background.jpg,/images/background2.jpg"
+    ></div>
+    <div id="home-info" @click="homeClick">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>振振姚 の 小窝</h1>
+                <h3></h3>
+                <h5>两耳不闻窗外事 一心只读圣贤书</h5>
+            </div>
+        </span>
     </div>
-    <div class="info">
+</div>
+<div
+    id="home-posts-wrap"
+    ref="homePostsWrap"
+    true
+>
+    <div id="home-posts">
+        
+
+<div class="post">
+    <a href="/2024/09/18/hello-world/">
+        <h2 class="post-title">Hello World</h2>
+    </a>
+    <div class="category-and-date">
+        
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2024/10/22
+            2024/9/18
         </span>
         
-        <span class="category">
-            <a href="/categories/%E7%A8%8B%E5%BA%8F%E7%8C%BF/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                程序猿
-            </a>
-        </span>
-        
-        
-        <span class="tags">
-            <span class="icon">
-                <i class="fa-solid fa-tags fa-fw"></i>
-            </span>
-            
-            
-            <span class="tag">
-                
-                <a href="/tags/machinelearning/" style="color: #ff7d73">
-                    machinelearning
-                </a>
-            </span>
-            
-        </span>
         
     </div>
-    
-    <div class="content" v-pre>
-        <blockquote>
-<p>整理一下昨天学习的内容，主要是梳理一下框架，详细的理论证明也略过了。</p>
-</blockquote>
-<span id="more"></span>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
+</code></pre>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
+</code></pre>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
+</code></pre>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
+</code></pre>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
-<h2 id="Feature-Selection"><a href="#Feature-Selection" class="headerlink" title="Feature Selection"></a>Feature Selection</h2><h3 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h3><ul>
-<li>feature</li>
-<li>relevant feature</li>
-<li>irrelevant feature</li>
-<li>redundant feature <ul>
-<li>（立方体的例子）</li>
-<li>学习任务不同，相关特征可能不同</li>
-</ul>
-</li>
-<li>data preprocessing</li>
-</ul>
-<h3 id="逻辑架构"><a href="#逻辑架构" class="headerlink" title="逻辑架构"></a>逻辑架构</h3><ul>
-<li>进行特征选择的原因<ul>
-<li>现实任务中经常遇到维数灾难问题</li>
-<li>去除不相关特征会降低学习任务的难度</li>
-</ul>
-</li>
-<li>选取特征环节<ul>
-<li>出发点：没有先验知识的情况下遍历所有子集</li>
-<li>转变做法：产生一个候选子集，评价出它的好坏，直至无法找到更好的候选自己。</li>
-<li>第一个环节：subset search：forward，backward，bidirectional</li>
-<li>第二个环节：subset evaluation：用多样性度量（信息熵）去计算信息增益作为评价准则，信息增益越大，意味着特征子集有助于分类的信息越多</li>
-</ul>
-</li>
-<li><h2 id="特征选择方法-filter-Relief方法-为二分类问题设计-关键是如何确定相关统计量：计算猜中近邻和猜错紧邻-wrapper-目的是为给定学习器选择最有利于其性能，量身定做的特征子集-计算开销要比过滤式特征选择大得多-LVW方法-使用随机策略来进行子集搜索"><a href="#特征选择方法-filter-Relief方法-为二分类问题设计-关键是如何确定相关统计量：计算猜中近邻和猜错紧邻-wrapper-目的是为给定学习器选择最有利于其性能，量身定做的特征子集-计算开销要比过滤式特征选择大得多-LVW方法-使用随机策略来进行子集搜索" class="headerlink" title="特征选择方法- filter  - Relief方法  - 为二分类问题设计  - 关键是如何确定相关统计量：计算猜中近邻和猜错紧邻- wrapper  - 目的是为给定学习器选择最有利于其性能，量身定做的特征子集  - 计算开销要比过滤式特征选择大得多  - LVW方法  - 使用随机策略来进行子集搜索"></a>特征选择方法<br>- filter<br>  - Relief方法<br>  - 为二分类问题设计<br>  - 关键是如何确定相关统计量：计算猜中近邻和猜错紧邻<br>- wrapper<br>  - 目的是为给定学习器选择最有利于其性能，量身定做的特征子集<br>  - 计算开销要比过滤式特征选择大得多<br>  - LVW方法<br>  - 使用随机策略来进行子集搜索</h2><ul>
-<li>embedding</li>
-</ul>
-</li>
-</ul>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2024/09/18/hello-world/" class="go-post">阅读全文</a>
+</div>
+
+
+        <div class="page-current">
+    
+    <a class="page-num" href="/page/2/">
+        <i class="fa-solid fa-caret-left fa-fw"></i>
+    </a>
+    <a class="page-num" href="/">1</a>
+    <span class="page-omit">...</span>
+    
+    <span class="current">3</span>
+    
+    
+    
+    
+</div>
 
     </div>
     
-    
-    
-    <div id="comment">
-        <div id="gitalk-container"></div>
+    <div id="home-card">
+        <div id="card-style">
+    <div id="card-div">
+        <div class="avatar">
+            <img src="/images/avatar.jpg" alt="avatar" />
+        </div>
+        <div class="name">Zhen Yao</div>
+        <div class="description">
+            <p>喜欢动漫，游戏，旅游，读书<br>不正经的程序员</p>
+
+        </div>
+        
+        
+        <div class="friend-links">
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://zhengli0060.github.io/">李 政</a>
+            </div>
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://cpython666.github.io/">XingMengQiHang</a>
+            </div>
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://www.qbitai.com/">量子位</a>
+            </div>
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://www.matongxue.com/">马同学</a>
+            </div>
+            
+        </div>
+        
     </div>
-    
-    
-    
-    
+</div>
+
+    </div>
     
 </div>
 
@@ -285,26 +320,6 @@
         
     </div>
     <script src="/js/main.js"></script>
-    
-    
-
-<script>
-    const gitalk = new Gitalk({
-        clientID: "",
-        clientSecret: "",
-        repo: "",
-        owner: "",
-        admin: "".split(","),
-        language: "",
-        id: location.pathname,
-        
-    })
-    gitalk.render("gitalk-container");
-</script>
-
-
-
-
     
 </body>
 </html>

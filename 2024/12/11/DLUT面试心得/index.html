@@ -4,7 +4,7 @@
 <html lang="zh">
 <head>
     <meta charset="utf-8" />
-    <title>特征选择与稀疏学习 | 振振姚 の 小窝</title>
+    <title>DLUT面试心得 | 振振姚 の 小窝</title>
     <meta name="author" content="Zhen Yao" />
     <meta name="description" content="两耳不闻窗外事 一心只读圣贤书" />
     <meta name="keywords" content="" />
@@ -62,7 +62,7 @@
     <script src="/js/fireworks.js"></script>
 
 
-</head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 <body>
     <div id="layout">
         <transition name="fade">
@@ -170,22 +170,22 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>特征选择与稀疏学习</h1>
+        <h1>DLUT面试心得</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2024/10/22
+            2024/12/11
         </span>
         
         <span class="category">
-            <a href="/categories/%E7%A8%8B%E5%BA%8F%E7%8C%BF/">
+            <a href="/categories/%E7%A0%94%E7%A9%B6%E5%83%A7/">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
-                程序猿
+                研究僧
             </a>
         </span>
         
@@ -198,8 +198,8 @@
             
             <span class="tag">
                 
-                <a href="/tags/machinelearning/" style="color: #ff7d73">
-                    machinelearning
+                <a href="/tags/%E9%81%90%E6%83%B3/" style="color: #03a9f4">
+                    遐想
                 </a>
             </span>
             
@@ -209,38 +209,24 @@
     
     <div class="content" v-pre>
         <blockquote>
-<p>整理一下昨天学习的内容，主要是梳理一下框架，详细的理论证明也略过了。</p>
+<p>临考试的前一晚，焦虑的直接脸上长了俩豆，一睡醒才发现。没办法，只能硬着头皮上。也不敢吃饭，怕拉肚子，坐立不安，紧张的要死。索性，顺利的结束了。</p>
 </blockquote>
 <span id="more"></span>
-
-<h2 id="Feature-Selection"><a href="#Feature-Selection" class="headerlink" title="Feature Selection"></a>Feature Selection</h2><h3 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h3><ul>
-<li>feature</li>
-<li>relevant feature</li>
-<li>irrelevant feature</li>
-<li>redundant feature <ul>
-<li>（立方体的例子）</li>
-<li>学习任务不同，相关特征可能不同</li>
+<h1 id="博士复试答辩结束了"><a href="#博士复试答辩结束了" class="headerlink" title="博士复试答辩结束了"></a>博士复试答辩结束了</h1><h2 id="流程："><a href="#流程：" class="headerlink" title="流程："></a>流程：</h2><ul>
+<li>抽签决定顺序</li>
+<li>英语自我介绍</li>
+<li>中文汇报PPT</li>
+<li>导师提问</li>
 </ul>
-</li>
-<li>data preprocessing</li>
+<h2 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h2><ul>
+<li>PPT中的问题：用太阳镜和皮肤癌之间的关系去说明相关不等于因果不太合适</li>
+<li>论文中的问题：用correlation会增加计算两个标准差的计算量，为什么不用cov？</li>
+<li>论文作者都有谁？</li>
+<li>是去年的nips么？</li>
 </ul>
-<h3 id="逻辑架构"><a href="#逻辑架构" class="headerlink" title="逻辑架构"></a>逻辑架构</h3><ul>
-<li>进行特征选择的原因<ul>
-<li>现实任务中经常遇到维数灾难问题</li>
-<li>去除不相关特征会降低学习任务的难度</li>
-</ul>
-</li>
-<li>选取特征环节<ul>
-<li>出发点：没有先验知识的情况下遍历所有子集</li>
-<li>转变做法：产生一个候选子集，评价出它的好坏，直至无法找到更好的候选自己。</li>
-<li>第一个环节：subset search：forward，backward，bidirectional</li>
-<li>第二个环节：subset evaluation：用多样性度量（信息熵）去计算信息增益作为评价准则，信息增益越大，意味着特征子集有助于分类的信息越多</li>
-</ul>
-</li>
-<li><h2 id="特征选择方法-filter-Relief方法-为二分类问题设计-关键是如何确定相关统计量：计算猜中近邻和猜错紧邻-wrapper-目的是为给定学习器选择最有利于其性能，量身定做的特征子集-计算开销要比过滤式特征选择大得多-LVW方法-使用随机策略来进行子集搜索"><a href="#特征选择方法-filter-Relief方法-为二分类问题设计-关键是如何确定相关统计量：计算猜中近邻和猜错紧邻-wrapper-目的是为给定学习器选择最有利于其性能，量身定做的特征子集-计算开销要比过滤式特征选择大得多-LVW方法-使用随机策略来进行子集搜索" class="headerlink" title="特征选择方法- filter  - Relief方法  - 为二分类问题设计  - 关键是如何确定相关统计量：计算猜中近邻和猜错紧邻- wrapper  - 目的是为给定学习器选择最有利于其性能，量身定做的特征子集  - 计算开销要比过滤式特征选择大得多  - LVW方法  - 使用随机策略来进行子集搜索"></a>特征选择方法<br>- filter<br>  - Relief方法<br>  - 为二分类问题设计<br>  - 关键是如何确定相关统计量：计算猜中近邻和猜错紧邻<br>- wrapper<br>  - 目的是为给定学习器选择最有利于其性能，量身定做的特征子集<br>  - 计算开销要比过滤式特征选择大得多<br>  - LVW方法<br>  - 使用随机策略来进行子集搜索</h2><ul>
-<li>embedding</li>
-</ul>
-</li>
+<h2 id="当天出结果，有名单。"><a href="#当天出结果，有名单。" class="headerlink" title="当天出结果，有名单。"></a>当天出结果，有名单。</h2><h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><ul>
+<li>准备了很多没问的：数分高代概率论</li>
+<li>拓展了很多问题，老师也没问。</li>
 </ul>
 
     </div>
