@@ -236,6 +236,9 @@ git config --global https.proxy https://proxyserver:port
 <pre><code class="bash">git config --global --unset http.proxy
 git config --global --unset https.proxy
 </code></pre>
+<p>重新尝试推送或更新:</p>
+<pre><code class="bash">git push origin master
+</code></pre>
 <ul>
 <li><ol start="3">
 <li>切换到 SSH 方式<br>如果 HTTPS 连接到 GitHub 不稳定，建议改用 SSH 方式，这样可以绕过 HTTPS 的 SSL 错误。步骤如下：</li>

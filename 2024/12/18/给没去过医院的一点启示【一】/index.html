@@ -4,7 +4,7 @@
 <html lang="zh">
 <head>
     <meta charset="utf-8" />
-    <title>softmax 函数 | 振振姚 の 小窝</title>
+    <title>给没去过医院的一点启示【一】 | 振振姚 の 小窝</title>
     <meta name="author" content="Zhen Yao" />
     <meta name="description" content="两耳不闻窗外事 一心只读圣贤书" />
     <meta name="keywords" content="" />
@@ -170,22 +170,22 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>softmax 函数</h1>
+        <h1>给没去过医院的一点启示【一】</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2024/9/21
+            2024/12/18
         </span>
         
         <span class="category">
-            <a href="/categories/%E7%A8%8B%E5%BA%8F%E7%8C%BF/">
+            <a href="/categories/%E7%94%9F%E6%B4%BB/">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
-                程序猿
+                生活
             </a>
         </span>
         
@@ -198,8 +198,8 @@
             
             <span class="tag">
                 
-                <a href="/tags/deeplearning/" style="color: #ff7d73">
-                    deeplearning
+                <a href="/tags/%E7%BB%8F%E5%8E%86/" style="color: #00a596">
+                    经历
                 </a>
             </span>
             
@@ -209,26 +209,40 @@
     
     <div class="content" v-pre>
         <blockquote>
-<p>终于解开了 softmax 函数的面纱，原来读论文的时候一直以为是别人定义的一个函数，其实是大家公认的定义的一个函数，主要用于解决多分类问题。机器学习的人用分类这个词描述两个有细微差别的问题，一个是硬性分类，即这个一定属于类别A，那个一定属于类别B。另一个是软性分类，即这个属于类别A的概率是多少。即使想知道硬性分类的结果，也常用软性分类的模型。</p>
+<p>工作日去了医院，人山人海，真的希望医院里的人能少点，医生能轻松点。有个在医院的朋友真的会让人省很多心，尤其是在稳定情绪方面。这里记录一些医院朋友的忠告，以此为鉴。</p>
 </blockquote>
 <span id="more"></span>
-
-<h3 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h3><ul>
-<li><strong>one-hot coding:</strong> 独热编码，是一个向量，他的分量和类别一样多，类别对应的分量为1，其余为0。</li>
-<li><strong>softmax regression:</strong> softmax 回归，与线性回归一样，他是一个单层神经网络。计算每个输出 $o_1, o_2, …, o_C$ 取决于所有输入 $x_1, x_2, …, x_d$, 因此他的输出层也是全连接层。</li>
-<li><strong>softmax 运算：</strong> 为什么有它呢？ 主要就是为了规范化预测 $o$。 softmax 函数能将为规范化的预测变换为非负数且总和为1。为了实现这个目的呢，就是对预测求幂，然后让每个求幂后的结果除以结果的总和。</li>
-<li><strong>softmin 运算：</strong> 类似于softmax，只不过是要找预测的概率的最小值。在式子里的变化就是 求负幂。</li>
+<h3 id="关于医院"><a href="#关于医院" class="headerlink" title="关于医院"></a>关于医院</h3><ul>
+<li>西医三甲: 友谊医院、同仁医院、天坛医院、中日友好</li>
+<li>中医三甲</li>
+<li>头部：协和、北大人民、北医三院，301<blockquote>
+<p>肝病的话，友谊医院不错</p>
+</blockquote>
+</li>
 </ul>
-<h3 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h3><p>用 Softmax 进行运算的常用损失函数是 交叉熵损失函数（Cross-Entropy Loss）。这是在多分类问题中最常用的损失函数，尤其是在神经网络中，当输出层使用 Softmax 激活函数时。<br>交叉熵损失函数的公式：<br>$$<br>L(y, \hat{y}) &#x3D; - \sum_{i&#x3D;1}^{C} y_i \log(\hat{y}_i)<br>$$</p>
-<h3 id="信息论"><a href="#信息论" class="headerlink" title="信息论"></a>信息论</h3><p>用熵量化数据中的信息内容，通过下式得到：<br>$$<br>H(P) &#x3D; \sum_{j} -P(j) \log(P(j))<br>$$<br>形式类似，但是这个是只用概率就可以计算，概率越大，信息量越少。<br><strong>信息论的基本定理：</strong> 为了对分布P中随机抽取的数据进行编码，我们至少需要 $H(P)$ nat 对其编码。nat相当于bit，但是对数的底为 e 而不是 2。 一个nat是$ \frac{1}{log(2)} $ bit。</p>
-<p>熵 $H(P)$ 可以理解为”知道真是概率的人所经历的惊异程度”, 而交叉熵 $H(P,Q)$ 可以想象为”主观概率为Q的观察者在看到根据概率P生成的数据时的惊异程度”</p>
-<hr>
-<ul>
-<li><input checked="" disabled="" type="checkbox"> \sum_{}^{}</li>
-<li><input checked="" disabled="" type="checkbox"> \hat{} </li>
-<li><input checked="" disabled="" type="checkbox"> \log{}</li>
-<li><input disabled="" type="checkbox"> 损失函数的证明过程，为什么 $-logP(y^{(i)}|x^{(i)}) &#x3D; - \sum_{j&#x3D;1}^{q} y_j log \hat{y_j}$</li>
+<blockquote>
+<p>其他西医三甲医院也都行，做个增强ct而已，三甲都是互认的</p>
+</blockquote>
+<h3 id="关于CT，核磁"><a href="#关于CT，核磁" class="headerlink" title="关于CT，核磁"></a>关于CT，核磁</h3><ul>
+<li>增强CT<ul>
+<li>增强要打造影剂，还是好医院好一些</li>
+<li>增强ct要考虑肾功能能不能代谢</li>
+<li>增强CT有辐射，还要打显影剂，需要直系亲属在场陪同，属于有创检查，最好不要做太多次</li>
+<li>做完以后多喝水，多排尿</li>
+<li>肝胆胰脾科&#x2F;消化科&#x2F;肝病科的普通号就可以开检查，不用挂专家号开，检查完再去挂专家号看就行</li>
+<li>可以先不挂号，你去影像科问，现在预约增强要约到什么时候</li>
 </ul>
+</li>
+</ul>
+<h3 id="一些小知识"><a href="#一些小知识" class="headerlink" title="一些小知识"></a>一些小知识</h3><ul>
+<li>报告上写的时候会有侧重的，如果没有偏向某个方面，就不要有太大压力</li>
+<li>结果出的慢，是因为跟家属说的一般比较晚，是怕万一没出来你们白跑</li>
+</ul>
+<h3 id="关于选择什么医院"><a href="#关于选择什么医院" class="headerlink" title="关于选择什么医院"></a>关于选择什么医院</h3><p>如果报告的结果是阴性的，没事儿，那谁看都没事儿。就是你这个报告拿给谁看，放之天下都是没事儿的。</p>
+<p>但如果他有事儿（阳性）的话，就不一样了。就即使是西医大夫，他不同的人、不同的观念，还有不同的医院，就他们受到的培训和那个教育不一样，他得出的结论都可能不一样。有的大夫会觉得这个大小没事儿，有的大夫会觉得这大小得切，有的大夫会觉得形态好就没事儿，有的大夫会觉得形态不好也得切，就是他不同人得到的结论是不一样的。肿瘤的金标准还是病理，所以像这种无创的手段（拍CT）都只能看个大概，那他就是靠经验判断。所以我建议你拿到报告之后，如果说是个阳性结果，你就去好医院看。</p>
+<p>北京的头部医院：<strong>协和，北医三院，301</strong>。<br>在头部医院挂个专家号，找个好大夫看的结果就是放心。去大医院作为患者的心态就不一样，你协和说这东西你就这样儿办，他也会给你说个1234出来，为什么这么办？就是你作为患者来说，那协和都这么说了，你会信服他。但是你比如说你要去个小医院，你可能就想，比如他说让你切，那你敢切吗？你也不敢切，对吧？你这个结果，他不会给你报一个强阳性的。他就算是阳性，他也是怀疑，可能那你可能要去肿瘤医院看。或者你要去小医院看，他说那你就切吧，你在我们这儿切吧。你现在住院吧，你敢住吗？你也不敢住院，你还是得去问。</p>
+<p>所以主要就是看那个结果。阴性不去看都没事，但如果性质不好，或者怀疑他怎么怎么样的就去个好医院，找个权威的医院去看。挂个专家号踏踏实实的就看去。不然的话，你自己心里头也乱，也那什么。毕竟人在北京嘛。你人在北京，你要是说在县里头，什么在老家什么的，你没办法。那你现在人都在北京了，咱看咱就看最好的，挂个专家号。</p>
+<p>我的意见是这样的啊，然后看你们家包括经济上呀，时间上怎么样就是最好的情况，最好的话，我觉得还是这样比较合理。</p>
 
     </div>
     
