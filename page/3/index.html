@@ -192,6 +192,78 @@
         
 
 <div class="post">
+    <a href="/2024/09/19/%E7%AE%80%E5%8D%95%E7%9A%84%E6%B7%BB%E5%8A%A0%E9%BC%A0%E6%A0%87%E7%82%B9%E5%87%BB%E7%89%B9%E6%95%88/">
+        <h2 class="post-title">简单的添加鼠标点击特效</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E7%A8%8B%E5%BA%8F%E7%8C%BF/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                程序猿
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/19
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h3 id="第一步：下载-js文件"><a href="#第一步：下载-js文件" class="headerlink" title="第一步：下载.js文件"></a>第一步：下载.js文件</h3><p>我是从这个博主<a target="_blank" rel="noopener" href="https://github.com/cpython666/AwesomeWeb/tree/main/%E9%BC%A0%E6%A0%87%E7%82%B9%E5%87%BB%E7%88%86%E7%82%B8%E6%95%88%E6%9E%9C">星梦启航</a>的github中获取的js文件，他这里有很多非常有趣的项目以及教程！<br>两个文件名，一个是 firework.js，一个是 anime.min.js。<br>确保你的 anime.min.js 和 fireworks.js 文件已经放在了 themes&#x2F;particlex&#x2F;source&#x2F;js&#x2F; 目录下</p>
+<h3 id="第二步：找到layout-ejs文件"><a href="#第二步：找到layout-ejs文件" class="headerlink" title="第二步：找到layout.ejs文件"></a>第二步：找到layout.ejs文件</h3><p>这里需要注意的是我现在所找到的教程或者通过问GPT方式提供的都是footer.ejs文件或者head.ejs文件，这里需要找一下有&lt;head&gt;标签的.ejs文件，所以我找到的是layout.ejs文件。不过我觉得这应该是根据你所用的主题有关系。我用的是particlex这个主题，所以最终找到的文件位置是：\themes\particlex\layout\layout.ejs</p>
+<h3 id="第三步：在部分引入js文件"><a href="#第三步：在部分引入js文件" class="headerlink" title="第三步：在&lt;head&gt;部分引入js文件"></a>第三步：在&lt;head&gt;部分引入js文件</h3><p>在layout.ejs文件的&lt;head&gt;部分，添加你的js文件引入代码。修改如下：  </p>
+<pre><code class="html">&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot; /&gt;
+    &lt;title&gt;&lt;%= title %&gt;&lt;/title&gt;
+    &lt;meta name=&quot;author&quot; content=&quot;&lt;%- config.author %&gt;&quot; /&gt;
+    &lt;meta name=&quot;description&quot; content=&quot;&lt;%- config.description %&gt;&quot; /&gt;
+    &lt;meta name=&quot;keywords&quot; content=&quot;&lt;%- config.keywords %&gt;&quot; /&gt;
+    &lt;meta
+        name=&quot;viewport&quot;
+        content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0&quot;
+    /&gt;
+    &lt;link rel=&quot;icon&quot; href=&quot;&lt;%- url_for(theme.avatar) %&gt;&quot; /&gt;
+    &lt;%- partial(&quot;import&quot;, &#123; type &#125;) %&gt;
+    &lt;!-- 添加这两行代码引入 JS 文件 --&gt;
+    &lt;script src=&quot;&lt;%- url_for(&#39;/js/anime.min.js&#39;) %&gt;&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;&lt;%- url_for(&#39;/js/fireworks.js&#39;) %&gt;&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+</code></pre>
+<h3 id="第四步：常规操作"><a href="#第四步：常规操作" class="headerlink" title="第四步：常规操作"></a>第四步：常规操作</h3><pre><code class="bash">hexo clean
+hexo g
+hexo d
+</code></pre>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/javascript/" style="color: #00bcd4">javascript</a>
+        </span>
+        
+    </div>
+    <a href="/2024/09/19/%E7%AE%80%E5%8D%95%E7%9A%84%E6%B7%BB%E5%8A%A0%E9%BC%A0%E6%A0%87%E7%82%B9%E5%87%BB%E7%89%B9%E6%95%88/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2024/09/18/My-first-Blog/">
         <h2 class="post-title">My first Blog</h2>
     </a>
